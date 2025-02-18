@@ -1,5 +1,7 @@
 package java.br.com.fiap.api_rest.controller;
 
+import java.br.com.fiap.api_rest.Dto.ClienteResponse;
+import java.br.com.fiap.api_rest.Service.ClienteService;
 import java.br.com.fiap.api_rest.models.Cliente;
 import java.br.com.fiap.api_rest.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,28 +19,34 @@ public class ClienteController {
     @Autowired
     ClienteRepository clienteRepository;
 
+    @Autowired
+    ClienteService clienteService;
     // Create, Read, Update, Delete
     // Post, Get, Put, Delete
 
     @PostMapping
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-        Cliente clienteSalvo = clienteRepository.save(cliente);
+        Cliente clienteSalvo = clienteRepository.save(clienteService.requestToCliente(cliente));
         return new ResponseEntity<>(clienteSalvo, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> readClientes() {
+    public ResponseEntity<List<ClienteResponse>> readClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
+        List<ClienteResponse> clienteResponses =new ArrayList<>();
+        for (Cliente cliente : clientes){
+            clienteResponses.add(clienteService.ClienteToresponse(cliente));
+        }
+        return new ResponseEntity<>(clienteResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> readCliente(@PathVariable Long id) {
+    public ResponseEntity<ClienteResponse> readCliente(@PathVariable Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if (cliente.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cliente.get(), HttpStatus.OK);
+        return new ResponseEntity<>(clienteService.ClienteToresponse(cliente.get()), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
