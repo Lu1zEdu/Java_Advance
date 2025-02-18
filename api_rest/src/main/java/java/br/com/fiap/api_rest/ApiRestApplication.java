@@ -1,13 +1,13 @@
-package fiap.com.br.Api;
+package java.br.com.fiap.api_rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiApplication {
+public class ApiRestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiApplication.class, args);
+		SpringApplication.run(ApiRestApplication.class, args);
 	}
 
 }

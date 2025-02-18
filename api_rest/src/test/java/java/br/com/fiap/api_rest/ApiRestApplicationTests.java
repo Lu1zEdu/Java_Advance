@@ -1,10 +1,10 @@
-package fiap.com.br.Api;
+package java.br.com.fiap.api_rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiApplicationTests {
+class ApiRestApplicationTests {
 
 	@Test
 	void contextLoads() {
