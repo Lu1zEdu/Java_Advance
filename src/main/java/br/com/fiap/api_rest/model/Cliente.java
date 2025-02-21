@@ -12,6 +12,9 @@ public class Cliente {
     private Long id;
     private String nome;
     private int idade;
+    private String email;
+    private String password;
+    private String cpf;
 
     public Cliente() {
     }
