@@ -1,5 +1,6 @@
 package br.com.fiap.api_rest.model;
 
+import br.com.fiap.api_rest.Enums.Categoria;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,4 +23,6 @@ public class Cliente {
     private String senha;
     private String cpf;
     private Categoria categoria;
+
+
 }
