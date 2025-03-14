@@ -1,4 +1,4 @@
-package br.com.fiap.api_rest.Enums;
+package br.com.fiap.api_rest.model;
 
 public enum Categoria {
     BRONZE("Básico"),PRATA("Prata"), OURO("Ouro");
